@@ -9,6 +9,36 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>{% block title %} {% endblock %}</title>
+        
+	<style>
+	* {
+	  box-sizing: border-box;
+	}
+
+	/* Create two equal columns that floats next to each other */
+	.column {
+	  float: left;
+	  width: 40%;
+	  padding: 20px;
+	  height: 3000px; /* Should be removed. Only for demonstration */
+	  margin-left: auto;
+	  margin-right: auto;
+	  
+	}
+	.column2 {
+	  float: left;
+	  width: 60%;
+	  padding: 20px;
+	  height: 3000px; /* Should be removed. Only for demonstration */
+	}
+
+	/* Clear floats after the columns */
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+	</style>
   </head>
   <body>
   
@@ -16,26 +46,90 @@
         {% block content %} {% endblock %}
     </div>
     
-    <TABLE BORDER>
-    <style type="text/css"> 
-    table {
-	width: 50%;
-	height: 300px;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-	}
-    </style>
-	<TR>
-		<TH>Event</TH> <TH>Date</TH> <TH>Location</TH> <TH>Time</TH> <TH>Price</TH> <TH>Link</TH>
-	</TR>
-	<TR>
-		<TD>A</TD> <TD>B</TD> <TD>C</TD><TD>A</TD> <TD>B</TD> <TD>C</TD>
-	</TR>
-	<TR>
-		<TD>D</TD> <TD>E</TD> <TD>F</TD><TD>A</TD> <TD>B</TD> <TD>C</TD>
-	</TR>
-</TABLE>
+	
+
+	<div class="row">
+	  <div class="column" style="background-color:#aaa;">
+	    <form action="{{ url_for('index') }}">
+	     <style type="text/css"> 
+	    form {
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: auto;
+		margin-bottom: auto;
+		}
+	    </style>
+	    <div>
+	    <label for="Fecha Inicial">Fecha inicial:</label>
+	   	 <input type="date" id="birthday" name="birthday">
+	     </div>
+	     <div>
+	     <label for="Fecha Fin">Fecha final:</label>
+	   	 <input type="date" id="birthday" name="birthday">
+	     </div>
+	     <div>
+	     <input  type="checkbox" name="pepperoni" value="pep"><span style="color:#FFF">Gratuito</span><br>
+	     </div>
+	     <div>
+	     
+	    <select name="OS">
+	     <option value="1">Todas</option> 
+	     <option value="2">Programacion Destacada Agenda Cultura </option> 
+	     <option value="3">Cursos Talleres</option>
+	     <option value="4">Teatro Performance</option>
+	     <option value="5">En Linea</option>
+	     <option value="6">Musica</option>
+	     <option value="7">Cuentacuentos Titeres Marionetas</option>
+	     <option value="8">Cine Actividades Audiovisuales</option>
+	     <option value="9">Actividades Calle Arte Urbano</option>
+	     <option value="10">Actividades Escolares</option> 
+	     <option value="11">Itinerarios Otras Actividades Ambientales</option> 
+	     <option value="12">Exposiciones</option>
+	     <option value="13">Circo Magia</option>
+	     <option value="14">Excursiones Itinerarios Visitas</option>
+	     <option value="15">Recitales Presentaciones Actos Literarios</option>
+	     <option value="16">Danza Baile</option>
+	     <option value="17">Congresos Jornadas</option>
+	     <option value="18">Concursos Certamenes</option>
+	     <option value="19">Comemoraciones Homenajes</option>
+	     <option value="20">Campamentos</option>
+	     <option value="21">Conferencias Coloquios</option>
+	     <option value="22">Actividades Deportivas</option>
+	     
+		</select>
+	    </div>
+	    <div >
+	      <input type="submit" value="Submit">
+	    </div>
+	  </form>
+	  </div>
+	      
+	  <div class="column2" style="background-color:#bbb;">
+	    <TABLE BORDER>
+	    <style type="text/css"> 
+	    table {
+		width: 50%;
+		height: 300px;
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: auto;
+		margin-bottom: auto;
+		}
+	    </style>
+		<TR>
+			<TH>Event</TH> <TH>Date</TH> <TH>Location</TH> <TH>Time</TH> <TH>Price</TH> <TH>Link</TH>
+		</TR>
+		<TR>
+			<TD>A</TD> <TD>B</TD> <TD>C</TD><TD>A</TD> <TD>B</TD> <TD>C</TD>
+		</TR>
+		<TR>
+			<TD>D</TD> <TD>E</TD> <TD>F</TD><TD>A</TD> <TD>B</TD> <TD>C</TD>
+		</TR>
+	</TABLE>
+  </div>
+</div>
     
     
     
