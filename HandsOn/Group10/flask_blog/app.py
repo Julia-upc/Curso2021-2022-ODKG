@@ -3,18 +3,24 @@ from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, RDFS, OWL, FOAF
 from rdflib.plugins.sparql import prepareQuery
 from flask import request
+from rdflib import Graph, Namespace, Literal
+from rdflib.namespace import RDF, RDFS
+from rdflib.plugins.sparql import prepareQuery
 
 
 
 app = Flask(__name__)
 
-@app.route('/madridEvents', )
+@app.route('/madridEvents',methods=["GET", "POST"] )
 
 def index():
 	headers = ['Event Title','Init Date','End Date','Location','Price','Link']
 	table = query_inicial()
 	if request.method == 'POST':
-		return "<p>Hello, World!</p>"
+		req=request.form.get("init")
+		print(req)
+		return print(req)
+		
 	else:
 		return render_template('index.html',headers=headers, objects=table)
 	
@@ -23,10 +29,6 @@ def index():
 
 def query_inicial():
 	RDFsource = "https://raw.githubusercontent.com/pablo-crucera/Curso2021-2022-ODKG/master/HandsOn/eventosfinal-deverdad.ttl"
-	from rdflib import Graph, Namespace, Literal
-	from rdflib.namespace import RDF, RDFS
-	from rdflib.plugins.sparql import prepareQuery
-
 	g = Graph()
 	g.namespace_manager.bind('ns', Namespace("http://www.example.org#"), override=False)
 	g.namespace_manager.bind('vcard', Namespace("http://www.w3.org/2001/vcard-rdf/3.0#"), override=False)
