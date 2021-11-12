@@ -22,32 +22,38 @@ def index():
 
 
 def query_inicial():
-	path='https://raw.githubusercontent.com/Julia-upc/Curso2021-2022-ODKG/master/HandsOn/Group10'
+	RDFsource = "https://raw.githubusercontent.com/pablo-crucera/Curso2021-2022-ODKG/master/HandsOn/eventosfinal-deverdad.ttl"
+	from rdflib import Graph, Namespace, Literal
+	from rdflib.namespace import RDF, RDFS
+	from rdflib.plugins.sparql import prepareQuery
+
 	g = Graph()
-	g.namespace_manager.bind('default', Namespace("http://smartcity.linkeddata.es/lcc/ontology/MadridEvents#"),override=False)
-	g.parse(path+'/rdf/RDF-with-links.ttl', format="turtle")
-	default=Namespace("http://smartcity.linkeddata.es/lcc/ontology/MadridEvents#")
+	g.namespace_manager.bind('ns', Namespace("http://www.example.org#"), override=False)
+	g.namespace_manager.bind('vcard', Namespace("http://www.w3.org/2001/vcard-rdf/3.0#"), override=False)
+	g.namespace_manager.bind('xsd', Namespace("http://www.w3.org/2001/XMLSchema#"), override=False)
+	g.namespace_manager.bind('smart', Namespace("http://smartcity.linkeddata.es/lcc/ontology/MadridEvents#"), override=False)
+	g.parse(RDFsource, format="ttl")
+
+	smart = Namespace("http://smartcity.linkeddata.es/lcc/ontology/MadridEvents#")
+	xsd = Namespace("http://www.w3.org/2001/XMLSchema#")
 	q = prepareQuery('''
-	SELECT ?title ?startDate ?endDate ?location  ?price ?link WHERE { 
-	?event a default:Event.
-	?event default:title ?title.
-	?event default:startDate ?startDate.
-	?event default:takesPlaceIn ?location.
-	?event default:endDate ?endDate.
-	?event default:price ?price.
-	?event default:URI ?link
-	}
-	''',
-	initNs = { "default": default} 
+		SELECT ?title ?startDate ?endDate ?location ?price ?link WHERE { 
+		?event a smart:Event.
+		?event smart:title ?title.
+		?event smart:startDate ?startDate.
+		?event smart:takesPlaceIn ?facility.
+		?facility smart:name ?location.
+		?event smart:endDate ?endDate.
+		?event smart:price ?price.
+		?event smart:URI ?link
+		}
+		''',
+		initNs = { "smart": smart, "xsd": xsd} 
 	)
-
-	queryOut = g.query(q)
-	datos=[]
 	
-	for event, startDate, location, endDate, price, link in queryOut:
-		datos.append([str(event), str(startDate), str(endDate), str(location), str(price), str(link)])
-
-	return(datos)
+	queryOut = g.query(q)
+	return queryOut
+	
 
 
 
