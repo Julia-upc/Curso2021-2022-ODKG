@@ -15,10 +15,10 @@
       $('#data').DataTable();
     });
     </script>
-    
+
 
     <title>{% block title %} {% endblock %}</title>
-        
+
 	<style>
 	* {
 	  box-sizing: border-box;
@@ -27,16 +27,16 @@
 	/* Create two equal columns that floats next to each other */
 	.column {
 	  float: left;
-	  width: 40%;
+	  width: 15%;
 	  padding: 20px;
 	  height: 3000px; /* Should be removed. Only for demonstration */
 	  margin-left: auto;
 	  margin-right: auto;
-	  
+
 	}
 	.column2 {
 	  float: left;
-	  width: 60%;
+	  width: 85%;
 	  padding: 20px;
 	  height: 3000px; /* Should be removed. Only for demonstration */
 	}
@@ -50,17 +50,17 @@
 	</style>
   </head>
   <body>
-  
+
     <div class="container">
         {% block content %} {% endblock %}
     </div>
-    
-	
+
+
 
 	<div class="row">
 	  <div class="column">
 	    <form action="{{ url_for('index') }}" method="post">
-	     <style type="text/css"> 
+	     <style type="text/css">
 	    form {
 		text-align: center;
 		margin-left: auto;
@@ -69,22 +69,23 @@
 		margin-bottom: auto;
 		}
 	    </style>
-	    <div>
-	    <label for="Fecha Inicial">Fecha inicial:</label>
-	   	 <input type="date" id="init">
+      <div>
+  	    <label for="init">Fecha inicial:</label>
+  	   	 <input type="date" id="init" name="init"><br>
 	     </div>
 	     <div>
-	     <label for="Fecha Fin">Fecha final:</label>
-	   	 <input type="date" id="fin">
+  	     <label for="fin">Fecha final:</label>
+  	   	 <input type="date" id="fin" name="fin"><br>
 	     </div>
 	     <div>
-	     <input  type="checkbox" value="gratis"><span> Gratuito </span><br>
+  	     <input type="checkbox" id="grat" name="grat" 		value="gratis">
+         <label for="grat"> Gratuito</label><br>
 	     </div>
 	     <div>
-	     
-	    <select name="local">
-	     <option value="Todas">Todas</option> 
-	     <option value="Programacion Destacada Agenda Cultura">Programacion Destacada Agenda Cultura </option> 
+
+	    <select name="local" id="local">
+	     <option value="Todas">Todas</option>
+	     <option value="Programacion Destacada Agenda Cultura">Programacion Destacada Agenda Cultura </option>
 	     <option value="Cursos Talleres">Cursos Talleres</option>
 	     <option value="Teatro Performance">Teatro Performance</option>
 	     <option value="En Linea">En Linea</option>
@@ -92,8 +93,8 @@
 	     <option value="Cuentacuentos Titeres Marionetas">Cuentacuentos Titeres Marionetas</option>
 	     <option value="Cine Actividades Audiovisuales">Cine Actividades Audiovisuales</option>
 	     <option value="Actividades Calle Arte Urbano">Actividades Calle Arte Urbano</option>
-	     <option value="Actividades Escolares">Actividades Escolares</option> 
-	     <option value="Itinerarios Otras Actividades Ambientales">Itinerarios Otras Actividades Ambientales</option> 
+	     <option value="Actividades Escolares">Actividades Escolares</option>
+	     <option value="Itinerarios Otras Actividades Ambientales">Itinerarios Otras Actividades Ambientales</option>
 	     <option value="Exposiciones">Exposiciones</option>
 	     <option value="Circo Magia">Circo Magia</option>
 	     <option value="Excursiones Itinerarios Visitas">Excursiones Itinerarios Visitas</option>
@@ -105,18 +106,18 @@
 	     <option value="Campamentos">Campamentos</option>
 	     <option value="Conferencias Coloquios">Conferencias Coloquios</option>
 	     <option value="Actividades Deportivas">Actividades Deportivas</option>
-	     
-		</select>
+
+		</select><br>
 	    </div>
 	    <div >
 	      <input type="submit" name="submit_button" value="Submit">
 	    </div>
 	  </form>
 	  </div>
-	      
-	  <div class="column2">	    
+
+	  <div class="column2">
 		<table border id="data" class="table table-striped">
-		    <style type="text/css"> 
+		    <style type="text/css">
 		    table {
 			width: 95%;
 			height: 500px;
@@ -143,17 +144,17 @@
 				<td>{{endDate}}</td>
 				<td>{{location}}</td>
 				<td>{{price}}</td>
-				<td>{{link}}</td>
+				<td><a href=""+ {{link}}>{{link}}</a>></td>
 				{%endfor%}
 	      			</tr>
 	      		</tbody>
 		</table>
   	</div>
 </div>
-    
-    
-    
-    
-    
+
+
+
+
+
   </body>
 </html>

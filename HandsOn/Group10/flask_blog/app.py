@@ -17,13 +17,16 @@ def index():
 	headers = ['Event Title','Init Date','End Date','Location','Price','Link']
 	table = query_inicial()
 	if request.method == 'POST':
-		req=request.form.get("init")
+		req = request.form.get("init")
+		req1 = request.form.get("fin")
+		req2 = request.form.get("grat")
+		req3 = request.form.get("local")
 		print(req)
-		return print(req)
-		
+		return "<p>Init:"+str(req)+ "    Fin: "+str(req1)+"     Gat: "+str(req2)+"      Local: "+str(req3)+"</p>"
+
 	else:
 		return render_template('index.html',headers=headers, objects=table)
-	
+
 
 
 
@@ -39,7 +42,7 @@ def query_inicial():
 	smart = Namespace("http://smartcity.linkeddata.es/lcc/ontology/MadridEvents#")
 	xsd = Namespace("http://www.w3.org/2001/XMLSchema#")
 	q = prepareQuery('''
-		SELECT ?title ?startDate ?endDate ?location ?price ?link WHERE { 
+		SELECT ?title ?startDate ?location ?endDate ?price ?link WHERE {
 		?event a smart:Event.
 		?event smart:title ?title.
 		?event smart:startDate ?startDate.
@@ -50,18 +53,8 @@ def query_inicial():
 		?event smart:URI ?link
 		}
 		''',
-		initNs = { "smart": smart, "xsd": xsd} 
+		initNs = { "smart": smart, "xsd": xsd}
 	)
-	
+
 	queryOut = g.query(q)
 	return queryOut
-	
-
-
-
-
-
-
-
-
-	
