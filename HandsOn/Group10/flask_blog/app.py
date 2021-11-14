@@ -7,6 +7,7 @@ from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, RDFS
 from rdflib.plugins.sparql import prepareQuery
 import datetime
+import re
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ app = Flask(__name__)
 
 def index():
 
-	headers = ['Event Title','Init Date','End Date','Location','Price','Link']
+	headers = ['Event Title','Init Date','End Date','Type of Event','Location','Price','Link']
 	table = 0
 	if request.method == 'POST':
 		req = request.form.get("init")
@@ -47,7 +48,7 @@ def query_inicial():
 	smart = Namespace("http://smartcity.linkeddata.es/lcc/ontology/MadridEvents#")
 	xsd = Namespace("http://www.w3.org/2001/XMLSchema#")
 	q = prepareQuery('''
-		SELECT ?title ?startDate ?endDate ?location ?price ?link WHERE {
+		SELECT ?title ?startDate ?endDate ?typeEvent ?location ?price ?link WHERE {
 		?event a smart:Event.
 		?event smart:title ?title.
 		?event smart:startDate ?startDate.
@@ -55,14 +56,16 @@ def query_inicial():
 		?facility smart:name ?location.
 		?event smart:endDate ?endDate.
 		?event smart:price ?price.
-		?event smart:URI ?link
+		?event smart:URI ?link.
+		?event smart:isA ?category.
+		?category smart:name ?typeEvent
 		}
 		''',
 		initNs = { "smart": smart, "xsd": xsd}
 	)
 
 	queryOut = g.query(q)
-	queryOut = [(title, dateTimeToString(startDate), dateTimeToString(endDate), location, price, URL) for title, startDate, endDate, location, price, URL in queryOut]
+	queryOut = [(title, dateTimeToString(startDate), dateTimeToString(endDate),' '.join(re.findall('[A-Z][a-z]*',typeEvent)), location, price, URL) for title, startDate, endDate, typeEvent , location, price, URL in queryOut]
 	return queryOut
 
 
@@ -103,7 +106,7 @@ def queries(gratuito=None, fecha_in=None, fecha_ax=None, tipo=None):
 		buscaPorTipo = True
 
 	q = '''
-	SELECT ?title ?startDate ?endDate ?location ?price ?link WHERE {
+	SELECT ?title ?startDate ?endDate ?typeEvent ?location ?price ?link WHERE {
 		?event a smart:Event.
 		?event smart:title ?title.
 		?event smart:startDate ?startDate.
@@ -112,6 +115,7 @@ def queries(gratuito=None, fecha_in=None, fecha_ax=None, tipo=None):
 		?event smart:endDate ?endDate.
 		?event smart:price ?price.
 		?event smart:URI ?link.
+		
 		FILTER(?startDate > "''' + fecha_min + '''"^^xsd:dateTime && ?endDate < "''' + fecha_max + '''"^^xsd:dateTime)
 	    '''
 	
@@ -122,6 +126,11 @@ def queries(gratuito=None, fecha_in=None, fecha_ax=None, tipo=None):
 	if buscaPorTipo:
 		q = q + '''?event smart:isA ?category.
 			?category smart:name "''' + tipo + '''".
+			?category smart:name ?typeEvent.
+			'''
+	else:
+		q = q + '''?event smart:isA ?category.
+			?category smart:name ?typeEvent.
 			'''
 	
 	q = q + '''}'''
@@ -129,5 +138,5 @@ def queries(gratuito=None, fecha_in=None, fecha_ax=None, tipo=None):
 	q = prepareQuery(q, initNs = { "smart": smart, "xsd": xsd})
 
 	queryOut = g.query(q)
-	queryOut = [(title, dateTimeToString(startDate), dateTimeToString(endDate), location, price, URL) for title, startDate, endDate, location, price, URL in queryOut]
+	queryOut = [(title, dateTimeToString(startDate), dateTimeToString(endDate),' '.join(re.findall('[A-Z][a-z]*',typeEvent)), location, price, URL) for title, startDate, endDate, typeEvent , location, price, URL in queryOut]
 	return queryOut
