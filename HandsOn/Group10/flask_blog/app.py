@@ -38,7 +38,7 @@ def dateTimeToString(dateTime):
 	return("Day: " + day + '\n' + "Time: " + time)
 		
 def query_inicial():
-	RDFsource = "https://raw.githubusercontent.com/pablo-crucera/Curso2021-2022-ODKG/master/HandsOn/eventosfinal-deverdad.ttl"
+	RDFsource = "https://raw.githubusercontent.com/pablo-crucera/Curso2021-2022-ODKG/master/HandsOn/Group10/rdf/eventosfinal-deverdad.ttl"
 	g = Graph()
 	g.namespace_manager.bind('ns', Namespace("http://www.example.org#"), override=False)
 	g.namespace_manager.bind('vcard', Namespace("http://www.w3.org/2001/vcard-rdf/3.0#"), override=False)
@@ -73,7 +73,7 @@ def query_inicial():
 
 
 def queries(gratuito=None, fecha_in=None, fecha_ax=None, tipo=None):
-	RDFsource = "https://raw.githubusercontent.com/pablo-crucera/Curso2021-2022-ODKG/master/HandsOn/eventosfinal-deverdad.ttl"
+	RDFsource = "https://raw.githubusercontent.com/pablo-crucera/Curso2021-2022-ODKG/master/HandsOn/Group10/rdf/eventosfinal-deverdad.ttl"
 	g = Graph()
 	g.namespace_manager.bind('ns', Namespace("http://www.example.org#"), override=False)
 	g.namespace_manager.bind('vcard', Namespace("http://www.w3.org/2001/vcard-rdf/3.0#"), override=False)
