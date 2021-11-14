@@ -24,8 +24,17 @@ def index():
 		table = queries(gratuito=req2, fecha_in=req, fecha_ax=req1, tipo=req3)
 		return render_template('index.html',headers=headers, objects=table)
 	else:
-		table = query_inicial()
+		table = query_inicial()			
 		return render_template('index.html',headers=headers, objects=table)
+		
+		
+
+
+def dateTimeToString(dateTime):
+	day, time = dateTime.split("T")
+	day = day.replace("-","/")
+	time = time.split("+")[0]
+	return("Day: " + day + '\n' + "Time: " + time)
 		
 def query_inicial():
 	RDFsource = "https://raw.githubusercontent.com/pablo-crucera/Curso2021-2022-ODKG/master/HandsOn/eventosfinal-deverdad.ttl"
@@ -38,7 +47,7 @@ def query_inicial():
 	smart = Namespace("http://smartcity.linkeddata.es/lcc/ontology/MadridEvents#")
 	xsd = Namespace("http://www.w3.org/2001/XMLSchema#")
 	q = prepareQuery('''
-		SELECT ?title ?startDate ?location ?endDate ?price ?link WHERE {
+		SELECT ?title ?startDate ?endDate ?location ?price ?link WHERE {
 		?event a smart:Event.
 		?event smart:title ?title.
 		?event smart:startDate ?startDate.
@@ -53,6 +62,7 @@ def query_inicial():
 	)
 
 	queryOut = g.query(q)
+	queryOut = [(title, dateTimeToString(startDate), dateTimeToString(endDate), location, price, URL) for title, startDate, endDate, location, price, URL in queryOut]
 	return queryOut
 
 
@@ -119,4 +129,5 @@ def queries(gratuito=None, fecha_in=None, fecha_ax=None, tipo=None):
 	q = prepareQuery(q, initNs = { "smart": smart, "xsd": xsd})
 
 	queryOut = g.query(q)
+	queryOut = [(title, dateTimeToString(startDate), dateTimeToString(endDate), location, price, URL) for title, startDate, endDate, location, price, URL in queryOut]
 	return queryOut

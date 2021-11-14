@@ -29,7 +29,7 @@
 	  float: left;
 	  width: 25%;
 	  padding: 20px;
-	  height: 3000px; /* Should be removed. Only for demonstration */
+	  height: 100px; /* Should be removed. Only for demonstration */
 	  margin-left: auto;
 	  margin-right: auto;
 
@@ -38,7 +38,7 @@
 	  float: left;
 	  width: 75%;
 	  padding: 20px;
-	  height: 3000px; /* Should be removed. Only for demonstration */
+	  height: 100px; /* Should be removed. Only for demonstration */
 	}
 
 	/* Clear floats after the columns */
@@ -120,12 +120,13 @@
 		    <style type="text/css">
 		    table {
 			width: 95%;
-			height: 500px;
+			height: 200px;
 			text-align: center;
 			margin-left: auto;
 			margin-right: auto;
 			margin-top: 70px;
 			margin-bottom: auto;
+			table-layout: auto;
 			}
 		    </style>
 			<thead>
@@ -137,14 +138,14 @@
 
 			</thead>
 			<tbody>
-			      {%for event , startDate , endDate , location , price , link in objects%}
+			      {%for event , startDate , endDate , location, price , link in objects%}
 			      <tr>
 				<td>{{event}}</td>
 				<td>{{startDate}}</td>
 				<td>{{endDate}}</td>
 				<td>{{location}}</td>
 				<td>{{price}}</td>
-				<td><a href=""+ {{link}}>{{link}}</a>></td>
+				<td><a href={{link}}>link</a></td>
 				{%endfor%}
 	      			</tr>
 	      		</tbody>
