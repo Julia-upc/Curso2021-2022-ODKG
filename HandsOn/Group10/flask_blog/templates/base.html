@@ -85,27 +85,27 @@
 
 	    <select name="local" id="local">
 	     <option value="Todas">Todas</option>
-	     <option value="Programacion Destacada Agenda Cultura">Programacion Destacada Agenda Cultura </option>
-	     <option value="Cursos Talleres">Cursos Talleres</option>
-	     <option value="Teatro Performance">Teatro Performance</option>
-	     <option value="En Linea">En Linea</option>
+	     <option value="ProgramacionDestacadaAgendaCultura">Programacion Destacada Agenda Cultura </option>
+	     <option value="CursosTalleres">Cursos Talleres</option>
+	     <option value="TeatroPerformance">Teatro Performance</option>
+	     <option value="EnLinea">En Linea</option>
 	     <option value="Musica">Musica</option>
-	     <option value="Cuentacuentos Titeres Marionetas">Cuentacuentos Titeres Marionetas</option>
-	     <option value="Cine Actividades Audiovisuales">Cine Actividades Audiovisuales</option>
-	     <option value="Actividades Calle Arte Urbano">Actividades Calle Arte Urbano</option>
-	     <option value="Actividades Escolares">Actividades Escolares</option>
-	     <option value="Itinerarios Otras Actividades Ambientales">Itinerarios Otras Actividades Ambientales</option>
+	     <option value="CuentacuentosTiteresMarionetas">Cuentacuentos Titeres Marionetas</option>
+	     <option value="CineActividadesAudiovisuales">Cine Actividades Audiovisuales</option>
+	     <option value="ActividadesCalleArteUrbano">Actividades Calle Arte Urbano</option>
+	     <option value="ActividadesEscolares">Actividades Escolares</option>
+	     <option value="ItinerariosOtrasActividadesAmbientales">Itinerarios Otras Actividades Ambientales</option>
 	     <option value="Exposiciones">Exposiciones</option>
-	     <option value="Circo Magia">Circo Magia</option>
-	     <option value="Excursiones Itinerarios Visitas">Excursiones Itinerarios Visitas</option>
-	     <option value="Recitales Presentaciones Actos Literarios">Recitales Presentaciones Actos Literarios</option>
-	     <option value="Danza Baile">Danza Baile</option>
-	     <option value="Congresos Jornadas">Congresos Jornadas</option>
-	     <option value="Concursos Certamenes">Concursos Certamenes</option>
-	     <option value="Comemoraciones Homenajes">Comemoraciones Homenajes</option>
+	     <option value="CircoMagia">Circo Magia</option>
+	     <option value="ExcursionesItinerariosVisitas">Excursiones Itinerarios Visitas</option>
+	     <option value="RecitalesPresentacionesActosLiterarios">Recitales Presentaciones Actos Literarios</option>
+	     <option value="DanzaBaile">Danza Baile</option>
+	     <option value="CongresosJornadas">Congresos Jornadas</option>
+	     <option value="ConcursosCertamenes">Concursos Certamenes</option>
+	     <option value="ComemoracionesHomenajes">Comemoraciones Homenajes</option>
 	     <option value="Campamentos">Campamentos</option>
-	     <option value="Conferencias Coloquios">Conferencias Coloquios</option>
-	     <option value="Actividades Deportivas">Actividades Deportivas</option>
+	     <option value="ConferenciasColoquios">Conferencias Coloquios</option>
+	     <option value="ActividadesDeportivas">Actividades Deportivas</option>
 
 		</select><br>
 	    </div>
@@ -137,7 +137,7 @@
 
 			</thead>
 			<tbody>
-			      {%for event , startDate , location , endDate , price , link in objects%}
+			      {%for event , startDate , endDate , location , price , link in objects%}
 			      <tr>
 				<td>{{event}}</td>
 				<td>{{startDate}}</td>
