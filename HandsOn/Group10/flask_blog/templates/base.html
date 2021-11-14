@@ -116,17 +116,65 @@
 	  </div>
 
 	  <div class="column2">
-		<table border=1 id="data" class="table table-striped" width=95% height="30%">
+		<table id="data" class="demoTable">
 		    <style type="text/css">
-		    table {
-			width: 95%;
-			height: 30%;
-			text-align: center;
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 70px;
-			margin-bottom: auto;
-			table-layout: auto;
+		    table.demoTable {
+			  border: 1px solid #1C6EA4;
+			  width: 100%;
+			  text-align: left;
+			  border-collapse: collapse;
+			  text-align: center;
+			}
+		    table.demoTable td, table.demoTable th {
+			  border: 1px solid #AAAAAA;
+			  padding: 3px 2px;
+			}
+		    table.demoTable tbody td {
+			  font-size: 13px;
+			  max-width: 150px;
+			}
+		    table.demoTable tr:nth-child(even) {
+			  background: #D0E4F5;
+			}
+		    table.demoTable thead {
+			  background: #1C6EA4;
+			  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+			  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+			  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+			  border-bottom: 2px solid #444444;
+			}
+		    table.demoTable thead th {
+			  font-size: 15px;
+			  font-weight: bold;
+			  color: #FFFFFF;
+			  border-left: 2px solid #D0E4F5;
+			}
+		    table.demoTable thead th:first-child {
+			  border-left: none;
+			}
+
+		    table.demoTable tfoot {
+			  font-size: 14px;
+			  font-weight: bold;
+			  color: #FFFFFF;
+			  background: #D0E4F5;
+			  background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+			  background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+			  background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+			  border-top: 2px solid #444444;
+			}
+		    table.demoTable tfoot td {
+			  font-size: 14px;
+			}
+		    table.demoTable tfoot .links {
+			  text-align: right;
+			}
+		    table.demoTable tfoot .links a{
+			  display: inline-block;
+			  background: #1C6EA4;
+			  color: #FFFFFF;
+			  padding: 2px 8px;
+			  border-radius: 5px;
 			}
 		    </style>
 			<thead>
