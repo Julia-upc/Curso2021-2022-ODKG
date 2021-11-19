@@ -15,7 +15,7 @@
 
 :takesPlaceIn rdf:type owl:ObjectProperty ;
               rdfs:domain :Event ;
-              rdfs:range :Falcility .
+              rdfs:range :Facility .
 
 :isA          rdf:type owl:ObjectProperty ;
               rdfs:domain :Event ;
